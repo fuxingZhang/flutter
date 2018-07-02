@@ -1,6 +1,5 @@
 # flutter  
 
-## 相关资源  
 ### flutter website:  
 1. english : https://flutter.io/
 2. chinese: https://flutterchina.club/
