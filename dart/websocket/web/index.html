@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Note 26</title>
+
+    <script type="application/dart" src="index.dart"></script>
+    <script src="packages/browser/dart.js"></script>
+
+    <link rel="stylesheet" href="index.css">
+  </head>
+
+  <body>
+    <h1>Note 26：WebSocket Chat Example</h1>
+
+    <div id="enter_screen">
+      <div class="box">
+        <input class="form-control speak"  placeholder="请输入昵称" type="text" value="" id="name" />
+      </div>
+    </div>
+
+    <div id="chat_screen" style="display: none;">
+          <div class="box mheight">
+            <h3>在线列表</h3>
+            <div id="nameslist"></div>
+          </div>
+
+          <div id="context"></div>
+
+          <input class="form-control speak" type="text" value="" id="speak" disabled/>
+    </div>
+
+  </body>
+</html>
