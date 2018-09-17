@@ -2,18 +2,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.tab}) : super(key: key);
-  final tab;
+class AskPage extends StatefulWidget {
+  AskPage({Key key}) : super(key: key);
+
   @override
-  _HomePageState createState() => new _HomePageState(tab: this.tab);
+  _HomePageState createState() => new _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  _HomePageState({Key key, this.tab});
-
-  final tab;
-
+class _HomePageState extends State<AskPage> {
   List<Widget> topics = <Widget>[
     Center(
       child: Text('loading')
@@ -29,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   void getTopics() async {
     List<Widget> result = [];
 
-    String dataURL = "https://cnodejs.org/api/v1/topics?page=1&tab=$tab&limit=10&mdrender=false";
+    String dataURL = "https://cnodejs.org/api/v1/topics?page=1&tab=ask&limit=10";
     http.Response response = await http.get(dataURL).catchError((err) {
       print(err);
       result.add(new Text('server response $err'));
@@ -45,7 +41,6 @@ class _HomePageState extends State<HomePage> {
         data['data'].forEach((article) {
           print(article['title']);
           result.add(new Text(article['title']));
-          result.add(new Text(article['content']));
         });
       } else {
         result.add(new Text('server response ${data['success']}'));
@@ -54,12 +49,10 @@ class _HomePageState extends State<HomePage> {
       result.add(new Text('response statusCode ${response.statusCode}'));
     }
 
-    if (this.mounted){
-      setState(() {
-        topics.clear();
-        topics = result;
-      });
-    }
+    setState(() {
+      topics.clear();
+      topics = result;
+    });
   }
 
   @override

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import './pages/home.dart';
+import './pages/ask.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
+      title: "cnode by star",
       home: new DefaultTabController(
         length: choices.length,
         child: new Scaffold(
           appBar: new AppBar(
-            title: const Text('Tabbed AppBar'),
+            title: new Text('cnode'),
             bottom: new TabBar(
               isScrollable: true,
               tabs: choices.map((Choice choice) {
@@ -21,9 +24,21 @@ class App extends StatelessWidget {
           ),
           body: new TabBarView(
             children: choices.map((Choice choice) {
+              // var page;
+              // switch (choice.path) {
+              //   case 'all':
+              //     page = new HomePage();
+              //     break;
+              //   case 'ask':
+              //     page = new AskPage();
+              //     break;
+              //   default:
+              //     page = new HomePage();
+              // }
+              // print(choice.title);
               return new Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: new ChoiceCard(choice: choice),
+                child: new HomePage(tab: choice.path),
               );
             }).toList(),
           ),
@@ -34,18 +49,18 @@ class App extends StatelessWidget {
 }
 
 class Choice {
-  const Choice({this.title, this.icon});
+  const Choice({this.title, this.icon, this.path});
   final String title;
   final IconData icon;
+  final String path;
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: '全部', icon: Icons.directions_car),
-  const Choice(title: '精华', icon: Icons.directions_bike),
-  const Choice(title: '分享', icon: Icons.directions_boat),
-  const Choice(title: '问答', icon: Icons.directions_bus),
-  const Choice(title: '招聘', icon: Icons.directions_railway),
-  const Choice(title: 'WALK', icon: Icons.directions_walk),
+  const Choice(title: '全部', path: 'all', icon: Icons.directions_car),
+  const Choice(title: '精华', path: 'good', icon: Icons.directions_bike),
+  const Choice(title: '分享', path: 'share', icon: Icons.directions_boat),
+  const Choice(title: '问答', path: 'ask', icon: Icons.directions_bus),
+  const Choice(title: '招聘', path: 'job', icon: Icons.directions_railway)
 ];
 
 class ChoiceCard extends StatelessWidget {
