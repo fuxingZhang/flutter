@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './pages/home.dart';
-import './pages/ask.dart';
+import './pages/article.dart';
 
 class App extends StatelessWidget {
   @override
@@ -37,13 +37,16 @@ class App extends StatelessWidget {
               // }
               // print(choice.title);
               return new Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(10.0),
                 child: new HomePage(tab: choice.path),
               );
             }).toList(),
           ),
         ),
       ),
+      routes: <String, WidgetBuilder>{
+        '/article': (BuildContext context) => new Article(),
+      }
     );
   }
 }
