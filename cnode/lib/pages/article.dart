@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_markdown/flutter_markdown.dart';
 
 class Article extends StatefulWidget {
   Article({Key key, this.id}) : super(key: key);
@@ -25,7 +26,7 @@ class _ArticlePageState extends State<Article> {
 
   void getTopic() async {
 
-    String dataURL = "https://cnodejs.org/api/v1/topic/$id";
+    String dataURL = "https://cnodejs.org/api/v1/topic/$id?mdrender=false";
     http.Response response = await http.get(dataURL).catchError((err) {
       print(err);
       content = 'err';
@@ -37,7 +38,7 @@ class _ArticlePageState extends State<Article> {
       if (data['success'] == true) {
         // print(data['data']);
         // print(data['data'][0]);
-        print(data['data']['title']);
+        print(data['data']);
         title = data['data']['title'];
         content = data['data']['content'];
       } else {
@@ -64,7 +65,7 @@ class _ArticlePageState extends State<Article> {
         // body: new Center(
         //   child: new Text(title),
         // ),
-        body: new Text(content),
+        body: new Markdown(data: content)
       ),
     );
   }
