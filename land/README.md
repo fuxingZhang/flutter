@@ -1,6 +1,10 @@
-# zfx
+# 公众查询系统APP
 
-A new Flutter project.
+公众查询系统APP
+
+## build
+
+flutter build apk
 
 ## Getting Started
 

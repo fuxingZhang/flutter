@@ -15,45 +15,6 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _InputDropdown extends StatelessWidget {
-  const _InputDropdown({
-    Key key,
-    this.child,
-    this.labelText,
-    this.valueText,
-    this.valueStyle,
-    this.onPressed }) : super(key: key);
-
-  final String labelText;
-  final String valueText;
-  final TextStyle valueStyle;
-  final VoidCallback onPressed;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: InputDecorator(
-        decoration: InputDecoration(
-          labelText: labelText,
-        ),
-        baseStyle: valueStyle,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(valueText, style: valueStyle),
-            Icon(Icons.arrow_drop_down,
-              color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade700 : Colors.white70
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 class _MyHomePageState extends State<MyHomePage> {
   String captchaId;
   String token;
@@ -234,134 +195,101 @@ class _MyHomePageState extends State<MyHomePage> {
           height: MediaQuery.of(context).size.height,
           padding: const EdgeInsets.all(0.0),
           color: Color(0xFF468081),
-          child: new SingleChildScrollView(
           // SingleChildScrollView 解决输入框超出屏幕会报错
           // resizeToAvoidBottomPadding: false也可以解决，但是输入框不会跟着键盘
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                new Container(
-                  height: MediaQuery.of(context).padding.top
-                ),
-                new Padding(
-                  padding: EdgeInsets.zero,
-                  // padding: EdgeInsets.all(0.0),
-                  // padding: new EdgeInsets.all(0.0),
-                  // padding: const EdgeInsets.all(0.0),
-                  child: new Image.asset('lib/assets/images/top_bg.png'),
-                ),
-                // const SizedBox(height: 8.0), 
-                getTextField('请填写姓名', form, 'name'),
-                // 1、去除下划线；
-                // 2、放在这里或者下面的padding、InputDecoration内部都行，flutter的灵活性很强
-                DropdownButtonHideUnderline(  
-                  child: new Padding(
+          child: new SingleChildScrollView(
+            // SafeArea 防止对操作系统的侵入，避免自己写 
+            child: SafeArea(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  // 这里是为了使图片不侵入状态栏，更好的方案是使用 SafeArea
+                  // 当然如果巧妙设计图片颜色，比如12306网站，侵入状态栏可以做到更漂亮
+                  // new Container(
+                  //   height: MediaQuery.of(context).padding.top
+                  // ),
+                  // 如果SizedBox前面带const，则height后面必须是10.0这样的固定值，而不能是MediaQuery.of(context).padding.top这样的变量
+                  // SizedBox(height: MediaQuery.of(context).padding.top), 
+                  // const SizedBox(height: 8.0), 
+                  new Padding(
+                    padding: EdgeInsets.zero,
+                    // padding: EdgeInsets.all(0.0),
+                    // padding: new EdgeInsets.all(0.0),
+                    // padding: const EdgeInsets.all(0.0),
+                    child: new Image.asset('lib/assets/images/top_bg.png'),
+                  ),
+                  getTextField('请填写姓名', form, 'name'),
+                  // 1、去除下划线；
+                  // 2、放在这里或者下面的padding、InputDecoration内部都行，flutter的灵活性很强
+                  getDropDownButton(form, setState),
+                  getTextField('请填写证件号码', form, 'card'),
+                  getTextField('请填写承包经营权证代码', form, 'qzhm'),
+                  new Padding(
                     padding: new EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
-                    child: InputDecorator(
-                      decoration: const InputDecoration(
-                        // labelText: 'Activity',
-                        // hintText: 'Choose an activity',
-                        // contentPadding: EdgeInsets.zero,
-                        contentPadding: EdgeInsets.only(top: 8.0, bottom: 8.0, left: 10.0),
-                        border: OutlineInputBorder(),
-                        // border: InputBorder.none
-                      ),
-                      child: DropdownButton(
-                        key: Key('dropdownbutton'),
-                        items: getListData(),
-                        hint: new Text('选择证件类型', style: new TextStyle(
-                          inherit: false, 
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold, 
-                          fontSize: 16.0,
-                          // decorationColor: Colors.black,
-                        ),),//当没有默认值的时候可以设置的提示
-                        value: form['cardType'],//下拉菜单选择完之后显示给用户的值
-                        onChanged: (T){//下拉菜单item点击之后的回调
-                          setState(() {
-                            form['cardType'] = T;
-                          });
-                        },
-                        elevation: 24,//设置阴影的高度
-                        style: new TextStyle(//设置文本框里面文字的样式
-                          inherit: false, 
-                          fontWeight: FontWeight.bold, 
-                          color: Colors.black,
-                          // decorationColor: Colors.white,
-                        ),
-                        isDense: false,//减少按钮的高度。默认情况下，此按钮的高度与其菜单项的高度相同。如果isDense为true，则按钮的高度减少约一半。 这个当按钮嵌入添加的容器中时，非常有用
-                        iconSize: 50.0,
-                      )
-                    )
-                  )
-                ),
-                getTextField('请填写证件号码', form, 'card'),
-                getTextField('请填写承包经营权证代码', form, 'qzhm'),
-                new Padding(
-                  padding: new EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
-                  child: new Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new Expanded(
-                        flex: 2,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: '请填写验证码',
-                            hintStyle: new TextStyle(
-                              fontWeight: FontWeight.bold, 
-                              color: Colors.white,
-                            )
-                          ),
-                          onChanged: (T){
-                            form['captchaInput'] = T;
-                          },
-                        ),
-                      ),
-                      new Expanded(
-                        flex: 1,
-                        child: new FittedBox(
-                          fit: BoxFit.scaleDown, // otherwise the logo will be tiny
-                          alignment: Alignment.center,
-                          child: new GestureDetector(
-                            onTap: () {
-                              _getCapcha();
+                    child: new Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        new Expanded(
+                          flex: 2,
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: '请填写验证码',
+                              hintStyle: new TextStyle(
+                                fontWeight: FontWeight.bold, 
+                                color: Colors.white,
+                              )
+                            ),
+                            onChanged: (T){
+                              form['captchaInput'] = T;
                             },
-                            child: Image.memory(
-                              captcha.contentAsBytes(), 
-                              color: Colors.white, 
-                              scale: 0.7,
-                              repeat:ImageRepeat.noRepeat,
-                              width: 100.0,
-                              height: 50.0,
+                          ),
+                        ),
+                        new Expanded(
+                          flex: 1,
+                          child: new FittedBox(
+                            fit: BoxFit.scaleDown, // otherwise the logo will be tiny
+                            alignment: Alignment.center,
+                            child: new GestureDetector(
+                              onTap: () {
+                                _getCapcha();
+                              },
+                              child: Image.memory(
+                                captcha.contentAsBytes(), 
+                                color: Colors.white, 
+                                scale: 0.7,
+                                repeat:ImageRepeat.noRepeat,
+                                width: 100.0,
+                                height: 50.0,
+                              ),
                             ),
                           ),
                         ),
+                      ],
+                    )
+                  ),
+                  new Container(
+                    margin: const EdgeInsets.only(bottom: 30.0),
+                    padding: new EdgeInsets.only(left: 30.0, right: 30.0),
+                    child:  RaisedButton(
+                      color: Color(0xFFdab251),
+                      padding: new EdgeInsets.only(top: 18.0, bottom: 18.0),
+                      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
+                      onPressed: _login,
+                      child: new Text(
+                        '权证查询',
+                        style: new TextStyle(
+                          // fontWeight: FontWeight.bold, 
+                          fontSize: 24.0,
+                          color: Color(0xFF664c03)
+                        )
                       ),
-                    ],
-                  )
-                ),
-                new Container(
-                  margin: const EdgeInsets.only(bottom: 30.0),
-                  padding: new EdgeInsets.only(left: 30.0, right: 30.0),
-                  child:  RaisedButton(
-                    color: Color(0xFFdab251),
-                    padding: new EdgeInsets.only(top: 18.0, bottom: 18.0),
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
-                    onPressed: _login,
-                    child: new Text(
-                      '权证查询',
-                      style: new TextStyle(
-                        // fontWeight: FontWeight.bold, 
-                        fontSize: 24.0,
-                        color: Color(0xFF664c03)
-                      )
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+            )
           ),
         ),
       ), 
