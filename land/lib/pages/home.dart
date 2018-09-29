@@ -15,6 +15,45 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
+class _InputDropdown extends StatelessWidget {
+  const _InputDropdown({
+    Key key,
+    this.child,
+    this.labelText,
+    this.valueText,
+    this.valueStyle,
+    this.onPressed }) : super(key: key);
+
+  final String labelText;
+  final String valueText;
+  final TextStyle valueStyle;
+  final VoidCallback onPressed;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onPressed,
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: labelText,
+        ),
+        baseStyle: valueStyle,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(valueText, style: valueStyle),
+            Icon(Icons.arrow_drop_down,
+              color: Theme.of(context).brightness == Brightness.light ? Colors.grey.shade700 : Colors.white70
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   String captchaId;
   String captchaInput;
@@ -51,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'id': captchaId,
         'code': captchaInput
       }
-    );
+    ).catchError(onError);
     _getCapcha();
     final jsonData = json.decode(response.body);
     print(jsonData);
@@ -75,13 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
         'token': token,
         'body': '6ZmI6L+c5paMJjEmNTEyOTI0MTk2NDA1MDM2NjM0JjUxMTMyMjIxNjIwNjA1MDA1NEo=',
       }
-    );
+    ).catchError(onError);
     print(response.body);
     final jsonData = json.decode(response.body);
     print(jsonData);
     Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
       return new User(data: jsonData);
     }));
+  }
+
+  void onError(error) {
+    _showDialog(error);
   }
 
   Future<Null> _showDialog(text) async {
@@ -136,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
     _getCapcha();
   }
 
-  _getCapcha() async {
+  void _getCapcha() async {
     http.Response response = await http.get(
       'https://www.gisstack.xyz/v1/api/captcha',
     );
@@ -181,27 +224,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(0.0),
                   child: new Image.asset('lib/assets/images/top_bg.png'),
                 ),
+                // const SizedBox(height: 8.0), 
                 getTextField('请填写姓名', form, 'name'),
-                new Padding(
-                  padding: new EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
-                  child: DropdownButton(
-                    items: getListData(),
-                    hint: new Text('选择证件类型'),//当没有默认值的时候可以设置的提示
-                    value: form['cardType'],//下拉菜单选择完之后显示给用户的值
-                    onChanged: (T){//下拉菜单item点击之后的回调
-                      setState(() {
-                        form['cardType'] = T;
-                      });
-                    },
-                    elevation: 24,//设置阴影的高度
-                    style: new TextStyle(//设置文本框里面文字的样式
-                      inherit: false, 
-                      // fontWeight: FontWeight.bold, 
-                      color: Colors.black,
-                      decorationColor: Colors.black,
-                    ),
-                    isDense: false,//减少按钮的高度。默认情况下，此按钮的高度与其菜单项的高度相同。如果isDense为true，则按钮的高度减少约一半。 这个当按钮嵌入添加的容器中时，非常有用
-                    iconSize: 50.0,
+                DropdownButtonHideUnderline(  // 下划线
+                  child: new Padding(
+                    padding: new EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
+                    child: DropdownButton(
+                      items: getListData(),
+                      hint: new Text('选择证件类型'),//当没有默认值的时候可以设置的提示
+                      value: form['cardType'],//下拉菜单选择完之后显示给用户的值
+                      onChanged: (T){//下拉菜单item点击之后的回调
+                        setState(() {
+                          form['cardType'] = T;
+                        });
+                      },
+                      elevation: 24,//设置阴影的高度
+                      style: new TextStyle(//设置文本框里面文字的样式
+                        inherit: false, 
+                        // fontWeight: FontWeight.bold, 
+                        color: Colors.black,
+                        decorationColor: Colors.black,
+                      ),
+                      isDense: false,//减少按钮的高度。默认情况下，此按钮的高度与其菜单项的高度相同。如果isDense为true，则按钮的高度减少约一半。 这个当按钮嵌入添加的容器中时，非常有用
+                      iconSize: 50.0,
+                    )
                   )
                 ),
                 getTextField('请填写证件号码', form, 'card'),
@@ -231,6 +277,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         flex: 1,
                         child: new FittedBox(
                           fit: BoxFit.scaleDown, // otherwise the logo will be tiny
+                          alignment: Alignment.center,
                           child: new GestureDetector(
                             onTap: () {
                               _getCapcha();
@@ -254,8 +301,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: new EdgeInsets.only(left: 30.0, right: 30.0),
                   child:  RaisedButton(
                     color: Color(0xFFdab251),
-                    padding: new EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                    padding: new EdgeInsets.only(top: 18.0, bottom: 18.0),
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
                     onPressed: _login,
                     child: new Text(
                       '权证查询',

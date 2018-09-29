@@ -33,7 +33,7 @@ class _UserPageState extends State<User> {
         item['YHZGX'],
         item['CYBZ'],
       ]);
-    };
+    }
 
     return MaterialApp(
       title: '用户信息页',
