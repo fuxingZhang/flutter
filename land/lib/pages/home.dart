@@ -59,9 +59,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
     if(response.statusCode != 200) {
       _showDialog(response.body);
+      _getCapcha();
       return;
     }
-    _getCapcha();
     final jsonData = json.decode(response.body);
     print(jsonData);
     if(jsonData['pass'] == false) {
@@ -139,14 +139,14 @@ class _MyHomePageState extends State<MyHomePage> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Do you really want to exit the app?'),
+        title: Text('你确定要退出应用吗？'),
         actions: <Widget>[
           FlatButton(
-            child: Text('No'),
+            child: Text('否'),
             onPressed: () => Navigator.pop(context, false),
           ),
           FlatButton(
-            child: Text('Yes'),
+            child: Text('是'),
             onPressed: () => Navigator.pop(context, true),
           ),
         ],
