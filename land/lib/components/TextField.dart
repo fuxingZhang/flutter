@@ -7,11 +7,13 @@ getTextField(text, form, key) {
       style: new TextStyle(
         height: .6,
         fontWeight: FontWeight.bold, 
-        color: Colors.black
+        color: Colors.black,
       ),
       cursorColor: Colors.white,
       decoration: InputDecoration(
-        border: OutlineInputBorder(),
+        // border: OutlineInputBorder(borderSide: BorderSide(color: Colors.yellow)),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
+        enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
         hintText: text,
         hintStyle: new TextStyle(
           fontWeight: FontWeight.bold, 

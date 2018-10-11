@@ -30,8 +30,9 @@ Widget getDropDownButton(form, setState) {
           // hintText: 'Choose an activity',
           // contentPadding: EdgeInsets.zero,
           contentPadding: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 10.0),
-          border: OutlineInputBorder(),
           // border: InputBorder.none
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
+          enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
         ),
         child: DropdownButton(
           items: getListData(),

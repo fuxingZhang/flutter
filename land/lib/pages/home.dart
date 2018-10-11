@@ -239,7 +239,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               color: Colors.black
                             ),
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
+                              enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
                               hintText: '请填写验证码',
                               hintStyle: new TextStyle(
                                 fontWeight: FontWeight.bold, 
