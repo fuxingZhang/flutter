@@ -233,6 +233,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         new Expanded(
                           flex: 2,
                           child: TextField(
+                            style: new TextStyle(
+                              height: .6,
+                              fontWeight: FontWeight.bold, 
+                              color: Colors.black
+                            ),
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: '请填写验证码',
@@ -261,7 +266,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scale: 0.7,
                                 repeat:ImageRepeat.noRepeat,
                                 width: 100.0,
-                                height: 50.0,
+                                height: 44.0,
                               ),
                             ),
                           ),
@@ -274,7 +279,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: new EdgeInsets.only(left: 30.0, right: 30.0),
                     child:  RaisedButton(
                       color: Color(0xFFdab251),
-                      padding: new EdgeInsets.only(top: 18.0, bottom: 18.0),
+                      padding: new EdgeInsets.only(top: 14.0, bottom: 14.0),
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
                       onPressed: _login,
                       child: new Text(
@@ -287,6 +292,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ),
                   ),
+                  Text('农业农村部农村经济体制与经营管理司',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xFFA3C3C3),
+                      fontSize: 14.0
+                    )
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.only(bottom: 20.0),
+                    child: Text('农业农村部规划设计研究院   版权所有',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Color(0xFFA3C3C3),
+                        fontSize: 14.0
+                      )
+                    ),
+                  )
                 ],
               ),
             )

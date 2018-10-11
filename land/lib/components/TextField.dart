@@ -5,6 +5,7 @@ getTextField(text, form, key) {
     padding: new EdgeInsets.only(bottom: 10.0, left: 30.0, right: 30.0),
     child: TextField(
       style: new TextStyle(
+        height: .6,
         fontWeight: FontWeight.bold, 
         color: Colors.black
       ),
