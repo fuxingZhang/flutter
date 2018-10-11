@@ -12,7 +12,7 @@ Widget getTableList(map) {
           )
         ),
         new TableCell(
-          // child:new Text(value, textAlign: TextAlign.start)
+          verticalAlignment: TableCellVerticalAlignment.middle,
           child: new Padding(
             padding: new EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
             child: new Text(value, textAlign: TextAlign.start)
@@ -22,37 +22,38 @@ Widget getTableList(map) {
     ));
   });
   Widget table =  new Table(
+    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     // border: TableBorder.symmetric(
     //   inside: BorderSide(
-    //     color: const Color(0xFF000000),
+    //     color: const Color(0xFFdddddd),
     //     width: 1.0,
     //     style: BorderStyle.solid,
     //   ),
     //   outside: BorderSide(
-    //     color: const Color(0xFF000000),
+    //     color: const Color(0xFFdddddd),
     //     width: 1.0,
     //     style: BorderStyle.solid,
     //   )
     // ),
     border: TableBorder(
       horizontalInside: BorderSide(
-        color: const Color(0xFF000000),
+        color: const Color(0xFFdddddd),
         width: 1.0,
         style: BorderStyle.solid,
       ), 
       // verticalInside: BorderSide(
-      //   color: const Color(0xFF000000),
+      //   color: const Color(0xFFdddddd),
       //   width: 1.0,
       //   style: BorderStyle.solid,
       // ),
       bottom: BorderSide(
-        color: const Color(0xFF000000),
+        color: const Color(0xFFdddddd),
         width: 1.0,
         style: BorderStyle.solid,
       )
     ),
     // border: TableBorder.all(
-    //   color: const Color(0xFF000000),
+    //   color: const Color(0xFFdddddd),
     //   width: 1.0,
     //   style: BorderStyle.solid,
     // ),
