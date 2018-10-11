@@ -55,7 +55,7 @@ class _UserPageState extends State<User> {
                 '承包期限': '$fromDate 至 $toDate',
               }),
               getFamily(data['CBF_JTCY']),
-              getLand(data['DK']),
+              getLand(context, data['DK'], data['CBJYQZDJB']['DKSYT']),
               getTableList({
                 '权证流水号': data['CBJYQZDJB']['CBJYQZLSH'],
                 '发证日期': grantDate,
