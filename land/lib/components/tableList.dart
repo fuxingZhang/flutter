@@ -14,7 +14,7 @@ Widget getTableList(map) {
         new TableCell(
           verticalAlignment: TableCellVerticalAlignment.middle,
           child: new Padding(
-            padding: new EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0),
+            padding: new EdgeInsets.only(top: 20.0, left: 20.0, bottom: 20.0,right: 20.0),
             child: new Text(value, textAlign: TextAlign.start)
           )
         )
@@ -22,6 +22,13 @@ Widget getTableList(map) {
     ));
   });
   Widget table =  new Table(
+    defaultColumnWidth: const FlexColumnWidth(1.0),
+    columnWidths: const {
+      0: FlexColumnWidth(2.0),
+      1: FlexColumnWidth(3.0), 
+      // 2: FlexColumnWidth(3.0),
+      // 2: FixedColumnWidth(120.0),
+    },
     defaultVerticalAlignment: TableCellVerticalAlignment.middle,
     // border: TableBorder.symmetric(
     //   inside: BorderSide(

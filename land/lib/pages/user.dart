@@ -23,17 +23,6 @@ class _UserPageState extends State<User> {
     final fromDate = '${fromDateTime.year}-${fromDateTime.month}-${fromDateTime.day}';
     final toDateTime = DateTime.parse(data['CBJYQZDJB']['CBQXZ']).toLocal();
     final toDate = '${toDateTime.year}-${toDateTime.month}-${toDateTime.day}';
-    List list = [['序号','姓名','与承包方关系','备注']];
-    List jtcy = data['CBF_JTCY'];
-    for(var i = 0;i < jtcy.length;i++){
-      final item = jtcy[i];
-      list.add([
-        (i+1).toString(),
-        item['CYXM'],
-        item['YHZGX'],
-        item['CYBZ'],
-      ]);
-    }
 
     return MaterialApp(
       title: '用户信息页',
@@ -65,7 +54,7 @@ class _UserPageState extends State<User> {
                 '合同代码': data['CBHT']['CBHTBM'],
                 '承包期限': '$fromDate 至 $toDate',
               }),
-              getFamily(list),
+              getFamily(data['CBF_JTCY']),
               getLand(data['DK']),
               getTableList({
                 '权证流水号': data['CBJYQZDJB']['CBJYQZLSH'],

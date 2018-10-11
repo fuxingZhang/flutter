@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import '../config/remark.dart';
+import '../config/relation.dart';
 
-Widget getFamily(list) {
+Widget getFamily(List data) {
+  List<List> list = [['序号','姓名','与承包方关系','备注']];
+  int i=1;
+  data.forEach((item) {
+    list.add([
+      (i++).toString(),
+      item['CYXM'],
+      relation[item['YHZGX']],
+      remark[item['CYBZ']],
+    ]);
+  });
   List<TableRow> lists = [];
-  int i = 0;
-  list.forEach((item){
+  i = 0;
+  lists.addAll(list.map((item){
     List<TableCell> children = [];
-    item.forEach((v){
-      children.add(new TableCell(
-        verticalAlignment: TableCellVerticalAlignment.middle,
-        child: new Padding(
-          padding: new EdgeInsets.only(top: 20.0, left: 0.0, bottom: 20.0),
-          child: new Text(v, textAlign: TextAlign.center)
-        )
-      ));
-    });
-    lists.add(new TableRow(
+    children.addAll(item.map((v) => _getTableCell(v)));
+    
+    return new TableRow(
       decoration: i++ != 0 ? null : new BoxDecoration(
         color: const Color(0xFFEDE6D2),
         // border: new Border.all(color: Colors.yellow, width: 5.0,),
@@ -23,22 +28,16 @@ Widget getFamily(list) {
         // gradient: new LinearGradient(colors: [Colors.blue, Colors.green]),
       ),
       children: children
-    ));
-  });
+    );
+  }));
   Widget table =  new Table(
     defaultColumnWidth: const FlexColumnWidth(1.0),
-    // columnWidths: const {
-    //   0: FixedColumnWidth(50.0),
-    //   1: FixedColumnWidth(100.0),
-    //   2: FixedColumnWidth(50.0),
-    //   3: FixedColumnWidth(100.0),
-    // },
     columnWidths: const {
       // 0: FlexColumnWidth(1.0),
-      1: FlexColumnWidth(2.0),     // flex 宽度
-      2: FlexColumnWidth(2.0),
-      // 2: FixedColumnWidth(120.0),  // 固定宽带
-      // 3: FlexColumnWidth(1.0),
+      1: FlexColumnWidth(2.0),
+      2: FlexColumnWidth(3.0),
+      // 2: FixedColumnWidth(120.0),
+      3: FlexColumnWidth(2.0),
     },
     // border: TableBorder.symmetric(
     //   inside: BorderSide(
@@ -76,8 +75,21 @@ Widget getFamily(list) {
     // ),
     children: lists
   );
-  return new Padding(
-    padding: new EdgeInsets.all(0.0),
-    child: table
+  return new ListView(
+    shrinkWrap: true,
+    padding: const EdgeInsets.only(bottom: 70.0),
+    children: <Widget>[
+      table
+    ]
+  );
+}
+
+TableCell _getTableCell(String text) {
+  return new TableCell(
+    verticalAlignment: TableCellVerticalAlignment.middle,
+    child: new Padding(
+      padding: new EdgeInsets.only(top: 20.0, left: 0.0, bottom: 20.0),
+      child: new Text(text, textAlign: TextAlign.center)
+    )
   );
 }
