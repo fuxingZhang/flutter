@@ -123,7 +123,7 @@ Future<Null> _showPicture(BuildContext context, String path) async {
         actions: <Widget>[
           new FlatButton(
             child: new Text(
-              '确定', 
+              '关闭', 
               style: new TextStyle(
                 fontSize: 18.0
               ),
