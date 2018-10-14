@@ -36,6 +36,7 @@ class _UserPageState extends State<User> {
         child: Scaffold(
           appBar: AppBar(
             bottom: TabBar(
+              isScrollable: true,
               tabs: [
                 Tab(text: '承包信息'),
                 Tab(text: '家庭成员'),
