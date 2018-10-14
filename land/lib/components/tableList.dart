@@ -66,8 +66,12 @@ Widget getTableList(map) {
     // ),
     children: lists
   );
-  return new Padding(
-    padding: new EdgeInsets.all(0.0),
-    child: table
+  
+  return new ListView(
+    shrinkWrap: true,
+    padding: const EdgeInsets.only(bottom: 70.0),
+    children: <Widget>[
+      table
+    ]
   );
 }
