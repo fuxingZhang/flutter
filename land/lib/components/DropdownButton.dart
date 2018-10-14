@@ -12,7 +12,10 @@ List<DropdownMenuItem> getListData(){
   List<DropdownMenuItem> items = new List();
   map.forEach((key, value) {
     items.add(new DropdownMenuItem(
-      child:new Text(value),
+      child:new Text(value, style: TextStyle(
+        // background: new Paint(),
+        color:Colors.black),
+      ),
       value: key,
     ));
   });
@@ -29,20 +32,25 @@ Widget getDropDownButton(form, setState) {
           // labelText: 'Activity',
           // hintText: 'Choose an activity',
           // contentPadding: EdgeInsets.zero,
-          contentPadding: EdgeInsets.only(top: 2.0, bottom: 2.0, left: 10.0),
+          contentPadding: EdgeInsets.only(top: -2.0, bottom: -2.0, left: 10.0),
           // border: InputBorder.none
           focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
           enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
         ),
         child: DropdownButton(
+          isExpanded: true,
           items: getListData(),
-          hint: new Text('选择证件类型', style: new TextStyle(
-            inherit: false, 
-            color: Colors.white,
-            fontWeight: FontWeight.bold, 
-            fontSize: 16.0,
-            // decorationColor: Colors.black,
-          ),),//当没有默认值的时候可以设置的提示
+          hint: new Text(
+            '选择证件类型', 
+            style: new TextStyle(
+              inherit: false, 
+              color: Colors.white,
+              fontWeight: FontWeight.bold, 
+              fontSize: 16.0,
+              height: 1.0,
+              // decorationColor: Colors.black,
+            ),
+          ),//当没有默认值的时候可以设置的提示
           value: form['cardType'],//下拉菜单选择完之后显示给用户的值
           onChanged: (T){//下拉菜单item点击之后的回调
             setState(() {
@@ -54,10 +62,12 @@ Widget getDropDownButton(form, setState) {
             inherit: false, 
             fontWeight: FontWeight.bold, 
             color: Colors.black,
+            height: 1.0,
             // decorationColor: Colors.white,
+            // decoration: TextDecoration.lineThrough,
           ),
           isDense: false,//减少按钮的高度。默认情况下，此按钮的高度与其菜单项的高度相同。如果isDense为true，则按钮的高度减少约一半。 这个当按钮嵌入添加的容器中时，非常有用
-          iconSize: 50.0,
+          iconSize: 40.0,
         )
       )
     )

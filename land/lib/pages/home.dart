@@ -234,13 +234,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           flex: 2,
                           child: TextField(
                             style: new TextStyle(
-                              height: .6,
+                              height: 1.0,
                               fontWeight: FontWeight.bold, 
                               color: Colors.black
                             ),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
                               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
+                              contentPadding: EdgeInsets.all(10.0),
                               hintText: '请填写验证码',
                               hintStyle: new TextStyle(
                                 fontWeight: FontWeight.bold, 
