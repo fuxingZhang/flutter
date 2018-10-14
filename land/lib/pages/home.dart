@@ -280,14 +280,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: new EdgeInsets.only(left: 30.0, right: 30.0),
                     child:  RaisedButton(
                       color: Color(0xFFdab251),
-                      padding: new EdgeInsets.only(top: 14.0, bottom: 14.0),
+                      padding: new EdgeInsets.only(top: 10.0, bottom: 10.0),
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
                       onPressed: _login,
                       child: new Text(
                         '权证查询',
                         style: new TextStyle(
                           // fontWeight: FontWeight.bold, 
-                          fontSize: 24.0,
+                          fontSize: 20.0,
                           color: Color(0xFF664c03)
                         )
                       ),
