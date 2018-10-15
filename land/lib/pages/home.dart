@@ -271,7 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scale: 0.7,
                                 repeat:ImageRepeat.noRepeat,
                                 width: 100.0,
-                                height: 44.0,
+                                height: 40.0,
                               ),
                             ),
                           ),
