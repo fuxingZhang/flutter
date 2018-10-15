@@ -58,13 +58,14 @@ class _MyHomePageState extends State<MyHomePage> {
       }
     );
     if(response.statusCode != 200) {
-      _showDialog(response.body);
       _getCapcha();
+      _showDialog(response.body);
       return;
     }
     final jsonData = json.decode(response.body);
     print(jsonData);
     if(jsonData['pass'] == false) {
+      _getCapcha();
       _showDialog('验证码错误');
       setState(() {
         form['captchaInput'] = null;
@@ -238,6 +239,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               fontWeight: FontWeight.bold, 
                               color: Colors.black
                             ),
+                            cursorColor: Color(0xFF2FD6D9),
+                            controller: TextEditingController(text: form['captchaInput']),
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
                               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),

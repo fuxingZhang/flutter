@@ -9,7 +9,7 @@ getTextField(text, form, key) {
         fontWeight: FontWeight.bold, 
         color: Colors.black,
       ),
-      cursorColor: Colors.white,
+      cursorColor: Color(0xFF2FD6D9),
       decoration: InputDecoration(
         // border: OutlineInputBorder(borderSide: BorderSide(color: Colors.yellow)),
         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
