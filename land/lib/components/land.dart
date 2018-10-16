@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+import './zoomable_image.dart';
 
 Widget getLand(BuildContext context,List list, String path) {
   List<TableRow> lists = [];
@@ -113,13 +115,23 @@ Future<Null> _showPicture(BuildContext context, String path) async {
             color: Color(0xFF614120),
           ),
         ),
-        content: new SingleChildScrollView(
-          child: new ListBody(
-            children: <Widget>[
-              Image.network('https://www.gisstack.xyz/v1/api/photo?path=$path', height: 200.0),
-            ],
-          ),
+        content: Container(
+          // symmetric 上下margin
+          // EdgeInsets.fromLTRB(24.0, 20.0, 24.0, 24.0) 从左、上、右、下
+          margin: const EdgeInsets.symmetric(vertical: 0.0),
+          height: 240.0,
+          width: 600.0,
+          child: 
+            PhotoViewInline(
+              backgroundColor: Colors.white,
+              imageProvider: NetworkImage('https://www.gisstack.xyz/v1/api/photo?path=$path'),
+            )
+            // new ZoomableImage(
+            //   NetworkImage('https://www.gisstack.xyz/v1/api/photo?path=$path'),
+            //   backgroundColor: Colors.white,
+            // )
         ),
+        contentPadding: EdgeInsets.all(0.0),
         actions: <Widget>[
           new FlatButton(
             child: new Text(
