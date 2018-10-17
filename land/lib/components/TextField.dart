@@ -10,11 +10,12 @@ getTextField(text, form, key) {
         color: Colors.black,
       ),
       cursorColor: Color(0xFF2FD6D9),
+      cursorWidth: 4.0,
       decoration: InputDecoration(
         // border: OutlineInputBorder(borderSide: BorderSide(color: Colors.yellow)),
         focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
         enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
-        contentPadding: EdgeInsets.all(10.0),
+        contentPadding: EdgeInsets.all(12.0),
         hintText: text,
         hintStyle: new TextStyle(
           fontWeight: FontWeight.bold, 

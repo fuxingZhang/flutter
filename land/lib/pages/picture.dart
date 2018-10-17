@@ -30,9 +30,15 @@ class _PicturePageState extends State<PicturePage> {
       home: Scaffold(
         appBar: AppBar(
           title: new Row(children:[
-            const SizedBox(
-              width: 30.0, 
-              height: 10.0
+            IconButton(
+              alignment: Alignment(-1.8, 0.0),
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              icon: Icon(const IconData(0xe5e0, fontFamily: 'MaterialIcons', matchTextDirection: true),
+                size: 22.0,
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
             new Expanded(
                 // flex: 1,
@@ -60,14 +66,19 @@ class _PicturePageState extends State<PicturePage> {
               //     Navigator.of(context).pop();
               //   },
               // ),
-              IconButton(
-                padding: EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 4.0),
-                icon: Icon(const IconData(0xe14c, fontFamily: 'MaterialIcons'),
-                  size: 30.0,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+              // X 按钮
+              // IconButton(
+              //   padding: EdgeInsets.fromLTRB(4.0, 4.0, 4.0, 4.0),
+              //   icon: Icon(const IconData(0xe14c, fontFamily: 'MaterialIcons'),
+              //     size: 30.0,
+              //   ),
+              //   onPressed: () {
+              //     Navigator.of(context).pop();
+              //   },
+              // ),
+              const SizedBox(
+                width: 38.0, 
+                height: 10.0
               ),
           ]),
         ),

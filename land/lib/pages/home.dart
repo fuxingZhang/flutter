@@ -245,7 +245,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             decoration: InputDecoration(
                               focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF2FD6D9))),
                               enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Color(0xFF8FC8C9))),
-                              contentPadding: EdgeInsets.all(10.0),
+                              contentPadding: EdgeInsets.all(12.0),
                               hintText: '请填写验证码',
                               hintStyle: new TextStyle(
                                 fontWeight: FontWeight.bold, 
@@ -272,7 +272,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 scale: 0.7,
                                 repeat:ImageRepeat.noRepeat,
                                 width: 100.0,
-                                height: 40.0,
+                                height: 44.0,
                               ),
                             ),
                           ),
@@ -285,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: new EdgeInsets.only(left: 30.0, right: 30.0),
                     child:  RaisedButton(
                       color: Color(0xFFdab251),
-                      padding: new EdgeInsets.only(top: 10.0, bottom: 10.0),
+                      padding: new EdgeInsets.only(top: 12.0, bottom: 12.0),
                       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(80.0)),
                       onPressed: _login,
                       child: new Text(
@@ -297,6 +297,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         )
                       ),
                     ),
+                  ),
+                  new Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 80.0),
+                    child: new FlatButton(
+                      textColor: Colors.white,
+                      padding: EdgeInsets.all(0.0),
+                      child: new Text(
+                        '用户指南', 
+                        textAlign: TextAlign.right,
+                        style: new TextStyle(
+                          fontSize: 20.0,
+                          // color: Colors.white
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/userGuide');
+                      },
+                    )
                   ),
                   Text('农业农村部农村经济体制与经营管理司',
                     textAlign: TextAlign.center,
