@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import '../components/bottomSheet.dart';
 
-class UserGuide extends StatefulWidget {
+class UserGuide extends StatelessWidget {
   UserGuide({Key key, this.path}) : super(key: key);
 
   final String path;
 
-  @override
-  _UserGuideState createState() => new _UserGuideState(path: path);
-}
-
-class _UserGuideState extends State<UserGuide> {
-  _UserGuideState({Key key, this.path});
-  final String path;
-
-  ThemeData theme = ThemeData(
+  final ThemeData theme = ThemeData(
     primarySwatch: Colors.blue,
     primaryColor: Color(0xFF468081),
     accentColor: Colors.white
@@ -89,10 +81,10 @@ Widget _getBody (BuildContext context) {
           ),
         ),
       ),
-      _getRow(context, 1, '怎样查询权证信息？', '/userGuide'),
-      _getRow(context, 2, '怎样查询权证信息？', '/userGuide'),
-      _getRow(context, 3, '浏览查询结果？', '/userGuide'),
-      _getRow(context, 4, '检查结果信息与手持权证不一致？', '/userGuide')
+      _getRow(context, 1, '怎样访问系统？', '/help4'),
+      _getRow(context, 2, '怎样查询权证信息？', '/help4'),
+      _getRow(context, 3, '浏览查询结果？', '/help4'),
+      _getRow(context, 4, '检查结果信息与手持权证不一致？', '/help4')
     ]
   );
 }
