@@ -5,6 +5,7 @@ import 'dart:async';
 import '../components/DropdownButton.dart';
 import '../components/TextField.dart';
 import './user.dart';
+import '../config/config.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -51,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       return;
     }
     http.Response response = await http.post(
-      'https://www.gisstack.xyz/v1/api/captcha',
+      '${Config['baseUrl']}/v1/api/captcha',
       body:{
         'id': captchaId,
         'code': form['captchaInput']
@@ -80,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final str = '${form['name']}&${form['cardType']}&${form['card']}&${form['qzhm']}';
     final body = utf8.fuse(base64).encode(str);
     http.Response response = await http.get(
-      'https://www.gisstack.xyz/v1/api/land',
+      '${Config['baseUrl']}/v1/api/land',
       headers: {
         'token': token,
         'body': '6ZmI6L+c5paMJjEmNTEyOTI0MTk2NDA1MDM2NjM0JjUxMTMyMjIxNjIwNjA1MDA1NEo=',
@@ -163,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _getCapcha() async {
     http.Response response = await http.get(
-      'https://www.gisstack.xyz/v1/api/captcha',
+      '${Config['baseUrl']}/v1/api/captcha',
     );
     if(response.statusCode != 200) {
       _showDialog(response.body);

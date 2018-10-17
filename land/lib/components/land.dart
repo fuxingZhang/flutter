@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 // import './zoomable_image.dart';
+import '../pages/picture.dart';
+import '../pages/picture2.dart';
+import '../config/config.dart';
 
 Widget getLand(BuildContext context,List list, String path) {
   List<TableRow> lists = [];
@@ -100,6 +103,8 @@ Widget getLand(BuildContext context,List list, String path) {
       SizedBox(height: 4.0,),
       _getTop(['承包地确权总面积(亩)', size.toStringAsFixed(2),'承包地总数(块)', length.toString()]),
       _getButton(context, path),
+      _getButton1(context, path),
+      _getButton2(context, path),
       table
     ],
   );
@@ -116,7 +121,10 @@ Future<Null> _showPicture(BuildContext context, String path) async {
           color: Color(0xFFEBDDBD),
           child: new Row(
             children:[
-              const SizedBox(width: 40.0),
+              const SizedBox(
+                width: 40.0,
+                height: 10.0
+              ),
               // new Opacity(opacity: 0.0, 
               //   child: IconButton(
               //     padding: EdgeInsets.all(8.0),
@@ -162,10 +170,10 @@ Future<Null> _showPicture(BuildContext context, String path) async {
             PhotoViewInline(
             // PhotoView(
               backgroundColor: Colors.white,
-              imageProvider: NetworkImage('https://www.gisstack.xyz/v1/api/photo?path=$path'),
+              imageProvider: NetworkImage('${Config['baseUrl']}/v1/api/photo?path=$path'),
             )
             // new ZoomableImage(
-            //   NetworkImage('https://www.gisstack.xyz/v1/api/photo?path=$path'),
+            //   NetworkImage('${Config['baseUrl']}/v1/api/photo?path=$path'),
             //   backgroundColor: Colors.white,
             // )
         ),
@@ -236,10 +244,62 @@ Container _getButton(BuildContext context, String path) {
       padding: new EdgeInsets.only(top: 10.0, bottom: 10.0),
       shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
       onPressed: (){
+        // _showPicture(context, path);
+        Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+          return new PicturePage(path: path);
+        }));
+      },
+      child: new Text(
+        '查看地块示意图(推荐，超出屏幕才可拖动)',
+        style: new TextStyle(
+          // fontWeight: FontWeight.bold, 
+          fontSize: 16.0,
+          color: Color(0xFFffffff)
+        )
+      ),
+    ),
+  );
+}
+
+Container _getButton1(BuildContext context, String path) {
+  return new Container(
+    margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+    padding: new EdgeInsets.only(left: 20.0, right: 20.0),
+    child:  RaisedButton(
+      color: Color(0xFF8CA315),
+      padding: new EdgeInsets.only(top: 10.0, bottom: 10.0),
+      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+      onPressed: (){
+        // _showPicture(context, path);
+        Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+          return new PicturePage2(path: path);
+        }));
+      },
+      child: new Text(
+        '查看地块示意图(新页面，可直接拖动)',
+        style: new TextStyle(
+          // fontWeight: FontWeight.bold, 
+          fontSize: 16.0,
+          color: Color(0xFFffffff)
+        )
+      ),
+    ),
+  );
+}
+
+Container _getButton2(BuildContext context, String path) {
+  return new Container(
+    margin: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+    padding: new EdgeInsets.only(left: 20.0, right: 20.0),
+    child:  RaisedButton(
+      color: Color(0xFF8CA315),
+      padding: new EdgeInsets.only(top: 10.0, bottom: 10.0),
+      shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(8.0)),
+      onPressed: (){
         _showPicture(context, path);
       },
       child: new Text(
-        '查看地块示意图',
+        '查看地块示意图(弹窗式)',
         style: new TextStyle(
           // fontWeight: FontWeight.bold, 
           fontSize: 16.0,

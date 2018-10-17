@@ -1,4 +1,4 @@
-Map relation = {
+const Map Relation = {
   '01':'本人',
   '02':'户主',
   '10':'配偶',

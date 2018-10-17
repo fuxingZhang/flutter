@@ -1,4 +1,4 @@
-Map remark = {
+const Map Remark = {
   '1': '外嫁女',
   '2': '入赘男',
   '3': '在校大学生',

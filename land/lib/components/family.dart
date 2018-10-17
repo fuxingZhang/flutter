@@ -9,8 +9,8 @@ Widget getFamily(List data) {
     list.add([
       (i++).toString(),
       item['CYXM'],
-      relation[item['YHZGX']],
-      remark[item['CYBZ']],
+      Relation[item['YHZGX']],
+      Remark[item['CYBZ']],
     ]);
   });
   List<TableRow> lists = [];
