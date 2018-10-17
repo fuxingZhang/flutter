@@ -299,21 +299,19 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   new Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 80.0),
-                    child: new FlatButton(
-                      textColor: Colors.white,
-                      padding: EdgeInsets.all(0.0),
-                      child: new Text(
-                        '用户指南', 
-                        textAlign: TextAlign.right,
-                        style: new TextStyle(
-                          fontSize: 20.0,
-                          // color: Colors.white
-                        ),
-                      ),
-                      onPressed: () {
+                    padding: EdgeInsets.only(bottom: 10.0),
+                    child: GestureDetector(
+                      onTap: () {
                         Navigator.of(context).pushNamed('/userGuide');
                       },
+                      child: Text('用户指南',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          height: 1.0,
+                          color: Colors.white
+                        )
+                      )
                     )
                   ),
                   Text('农业农村部农村经济体制与经营管理司',
