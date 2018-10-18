@@ -19,7 +19,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String captchaId;
   String token;
-  Widget captcha = Container(
+  Widget captcha;
+  Widget circularProgress = Container(
     height: 48.0,
     padding: EdgeInsets.all(14.0),
     margin: EdgeInsets.all(0.0),
@@ -172,6 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getCapcha() async {
+    setState(() {
+      captcha = circularProgress;
+    });
+    
     http.Response response = await http.get(
       '${Config['baseUrl']}/v1/api/captcha',
     );
@@ -184,21 +189,20 @@ class _MyHomePageState extends State<MyHomePage> {
     final UriData data = Uri.parse(jsonData['captcha']).data;
     // print(data.isBase64); 
     // print(data.contentAsBytes());
-    if (mounted) {
-      setState(() {
-        captchaId = jsonData['id'];
-        form['captchaInput'] = null;
 
-        captcha = Image.memory(
-          data.contentAsBytes(), 
-          color: Colors.white, 
-          scale: 0.7,
-          repeat:ImageRepeat.noRepeat,
-          // width: 100.0,
-          height: 44.0,
-        );
-      });
-    }
+    setState(() {
+      captchaId = jsonData['id'];
+      form['captchaInput'] = null;
+
+      captcha = Image.memory(
+        data.contentAsBytes(), 
+        color: Colors.white, 
+        scale: 0.7,
+        repeat:ImageRepeat.noRepeat,
+        // width: 100.0,
+        height: 44.0,
+      );
+    });
   }
 
   @override
