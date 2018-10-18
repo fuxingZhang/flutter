@@ -59,35 +59,29 @@ Widget _getBody (BuildContext context) {
     children: <Widget>[
       _getRow(
         '查询结果信息与手持权证不一致?', 
-        24.0,
-        'bold'
+        fontSize: 24.0,
+        fontWeight: FontWeight.bold
       ),
       _getRow(
-        '身份验证成功，浏览到查询结果信息，但与手持的权证信息不符。不符的情况可能因为：', 
-        16.0,
-        'normal'
+        '身份验证成功，浏览到查询结果信息，但与手持的权证信息不符。不符的情况可能因为：',
       ),
       _getRow(
         '１.数据库信息版本为旧版本数据，数据库尚未更新，导致与最新的手持权证信息不一致，查询结果以最新汇交入库时间为准（查询结果页面有提示）；',
-        16.0,
-        'normal'
       ),
       _getRow(
         '２.数据库登记汇交数据的质量问题，该情况可向当地农经部门反映和询问', 
-        16.0,
-        'normal'
       ),
     ]
   );
 }
 
-Widget _getRow(String text, double size, String weight) {
+Widget _getRow(String text, {double fontSize: 16.0, FontWeight fontWeight: FontWeight.normal}) {
   return new Padding(
     padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
     child: Text(text, style: TextStyle(
-      fontSize: size,
+      fontSize: fontSize,
       height: 1.4,
-      fontWeight: weight == 'bold' ? FontWeight.bold : FontWeight.normal
+      fontWeight: fontWeight
     )),
   );
 }

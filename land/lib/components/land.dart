@@ -102,7 +102,7 @@ Widget getLand(BuildContext context,List list, String path) {
       _getTop(['承包地确权总面积(亩)', size.toStringAsFixed(2),'承包地总数(块)', length.toString()]),
       _getButton(context, path),
       _getButton1(context, path),
-      _getButton2(context, path),
+      // _getButton2(context, path),
       table
     ],
   );
