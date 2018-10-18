@@ -164,18 +164,14 @@ class _PhotoViewState extends State<PhotoView> {
     setState(() {
       _scaleState = newScaleState;
     });
-    widget.scaleStateChangedCallback != null
-        ? widget.scaleStateChangedCallback(newScaleState)
-        : null;
+    if(widget.scaleStateChangedCallback != null) widget.scaleStateChangedCallback(newScaleState);
   }
 
   void onStartPanning() {
     setState(() {
       _scaleState = PhotoViewScaleState.zooming;
     });
-    widget.scaleStateChangedCallback != null
-        ? widget.scaleStateChangedCallback(PhotoViewScaleState.zooming)
-        : null;
+    if(widget.scaleStateChangedCallback != null) widget.scaleStateChangedCallback(PhotoViewScaleState.zooming);
   }
 
   @override

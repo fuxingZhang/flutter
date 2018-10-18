@@ -19,6 +19,7 @@ class UserGuide extends StatelessWidget {
       theme: theme,
       home: Scaffold(
         appBar: AppBar(
+          centerTitle: true,
           title: new Row(children:[
             IconButton(
               alignment: Alignment(-1.8, 0.0),

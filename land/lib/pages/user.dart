@@ -36,6 +36,40 @@ class _UserPageState extends State<User> {
         length: 4,
         child: Scaffold(
           appBar: AppBar(
+            elevation: 4.0,
+            title: new Row(children:[
+            IconButton(
+              alignment: Alignment(-1.8, 0.0),
+              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+              icon: Icon(
+                const IconData(0xe5e0, fontFamily: 'MaterialIcons', matchTextDirection: true),
+                // size: 22.0,
+              ),
+              iconSize: 10.0,
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            new Expanded(
+              // flex: 1,
+              child: new Text('国家级农村土地承包经营权公众查询系统',
+                textAlign: TextAlign.center,
+                style: new TextStyle(
+                  // color: Color(0xFF614120),
+                  // fontWeight: FontWeight.bold,
+                  fontSize: 20.0
+                ),
+              ),
+            ),]),
+            // iconTheme: Theme.of(context).iconTheme,
+            // brightness: Brightness.light,
+            // flexibleSpace: Container(
+            //   decoration: BoxDecoration(
+            //     border: Border(
+            //       bottom: BorderSide(color: Theme.of(context).dividerColor)
+            //     )
+            //   )
+            // ),
             bottom: TabBar(
               isScrollable: true,
               tabs: [
@@ -45,7 +79,6 @@ class _UserPageState extends State<User> {
                 Tab(text: '权证信息'),
               ],
             ),
-            title: Text('国家级农村土地承包经营权公众查询系统'),
           ),
           body: TabBarView(
             children: [
