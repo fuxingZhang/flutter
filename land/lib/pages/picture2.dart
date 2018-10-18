@@ -79,7 +79,13 @@ class _PicturePageState extends State<PicturePage2> {
 Widget _getBody (String path) {
   return new ZoomableImage(
     NetworkImage('${Config['baseUrl']}/v1/api/photo?path=$path'),
-    placeholder: const Center(child: const CircularProgressIndicator()),
+    placeholder: const Center(
+      child: const CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation(
+          Color(0xFF468081)
+        )
+      )
+    ),
     backgroundColor: Colors.white
   );
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:photo_view/photo_view.dart';
-// import '../components/zoomable_image.dart';
+import '../components/photoView/photo_view.dart';
 import '../config/config.dart';
+// import 'package:photo_view/photo_view.dart';
+// import '../components/zoomable_image.dart';
 
 class PicturePage extends StatefulWidget {
   PicturePage({Key key, this.path}) : super(key: key);
@@ -99,7 +100,13 @@ Widget _getBody (String path) {
 
   // return new ZoomableImage(
   //   NetworkImage('${Config['baseUrl']}/v1/api/photo?path=$path'),
-  //   placeholder: const Center(child: const CircularProgressIndicator()),
+  //   placeholder: const Center(
+  //     child: const CircularProgressIndicator(
+  //       valueColor: AlwaysStoppedAnimation(
+  //         Color(0xFF468081)
+  //       )
+  //     )
+  //   ),
   //   backgroundColor: Colors.white
   // );
 }
