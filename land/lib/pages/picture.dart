@@ -3,6 +3,7 @@ import '../components/photoView/photo_view.dart';
 import '../config/config.dart';
 // import 'package:photo_view/photo_view.dart';
 // import '../components/zoomable_image.dart';
+import '../components/backButtopn.dart';
 
 class PicturePage extends StatefulWidget {
   PicturePage({Key key, this.path}) : super(key: key);
@@ -31,16 +32,7 @@ class _PicturePageState extends State<PicturePage> {
       home: Scaffold(
         appBar: AppBar(
           title: new Row(children:[
-            IconButton(
-              alignment: Alignment(-1.8, 0.0),
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-              icon: Icon(const IconData(0xe5e0, fontFamily: 'MaterialIcons', matchTextDirection: true),
-                size: 22.0,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+            getBackButton(context),
             new Expanded(
                 // flex: 1,
                 child: new Text('承包地块示意图',

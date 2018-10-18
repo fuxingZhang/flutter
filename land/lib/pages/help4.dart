@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/bottomSheet.dart';
+import '../components/backButtopn.dart';
 
 class Help4 extends StatelessWidget {
   Help4({ Key key }) : super(key: key);
@@ -18,16 +19,7 @@ class Help4 extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: new Row(children:[
-            IconButton(
-              alignment: Alignment(-1.8, 0.0),
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-              icon: Icon(const IconData(0xe5e0, fontFamily: 'MaterialIcons', matchTextDirection: true),
-                size: 22.0,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
+            getBackButton(context),
             new Expanded(
               // flex: 1,
               child: new Text('用户指南',
