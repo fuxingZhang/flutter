@@ -68,7 +68,7 @@ class _UserPageState extends State<User> {
               })
             ],
           ),
-          bottomSheet: getBottomSheet(context)
+          bottomSheet: getBottomSheet(context, withUserGuide: true)
         ),
       ),
     );
