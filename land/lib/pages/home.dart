@@ -19,9 +19,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String captchaId;
   String token;
-  Widget captcha;
-  Widget circularProgress = Container(
-    height: 48.0,
+  Widget captcha = Container(
+    height: 44.0,
     padding: EdgeInsets.all(14.0),
     margin: EdgeInsets.all(0.0),
     child: new FittedBox(
@@ -33,6 +32,20 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     )
   );
+  // Widget captcha;
+  // Widget circularProgress = Container(
+  //   height: 44.0,
+  //   padding: EdgeInsets.all(14.0),
+  //   margin: EdgeInsets.all(0.0),
+  //   child: new FittedBox(
+  //     fit: BoxFit.scaleDown, 
+  //     alignment: Alignment.center,
+  //     child: const CircularProgressIndicator(
+  //       valueColor: AlwaysStoppedAnimation(Colors.white),
+  //       backgroundColor: Colors.black,
+  //     ),
+  //   )
+  // );
 
   Map<String, String> form = {
     'name': null,
@@ -173,9 +186,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _getCapcha() async {
-    setState(() {
-      captcha = circularProgress;
-    });
+    // setState(() {
+    //   captcha = circularProgress;
+    // });
     
     http.Response response = await http.get(
       '${Config['baseUrl']}/v1/api/captcha',
