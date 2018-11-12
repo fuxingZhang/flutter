@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.ele"
+        applicationId "com.example.gaode"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode flutterVersionCode.toInteger()
@@ -41,7 +41,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-            AMAP_KEY : "fd0244482d6364dac0510dfac228798e", /// 高德地图key
+            AMAP_KEY : "65653d593a0a39b00c3a73af26241c24", /// 高德地图key
         ]
     }
 
